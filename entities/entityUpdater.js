@@ -49,7 +49,7 @@ export function updateObstaclesAndPowerups(entities, ctx, obstacleSpeed, lives, 
 
                 if (checkCollision(entity)) {
                     if (entity.type === entityTypes.OBSTACLE) {
-                        obstacleHitSound.play();
+                        //obstacleHitSound.play();
                         setLives(lives-1);
                         console.log("Lives: " + lives);
     
@@ -100,7 +100,7 @@ function handlePowerup(powerup, ctx) {
             //ctx.font = '16px Arial';
             //ctx.fillStyle = 'white';
             //ctx.fillText(randomLine, powerup.x, powerup.y - 20);
-            musicLyricSound.play();
+            //musicLyricSound.play();
             setTimeout(() => {
                 consoleElement.style.display = 'none'; 
             }, 3000); // Hide after 3 seconds (adjust as needed)
