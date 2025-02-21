@@ -1,6 +1,6 @@
 import { setupCanvas, drawBackground } from './background.js';
 import { rocket, updateRocket, drawRocket } from './rocket.js';
-import { setupControls } from './controls.js';
+import { setupControls, updateTouchVelocity } from './controls.js';
 import { updateEntities, drawEntities, entities} from './entities/entities.js'; // Import entities
 import { gameOver, lives, score } from './entities/gameVariables.js';
 let canvas, ctx;
@@ -36,6 +36,7 @@ function draw() {
 
 function gameLoop() {
     update();
+    updateTouchVelocity(); // *** Add this line ***
     draw();
     requestAnimationFrame(gameLoop);
 }

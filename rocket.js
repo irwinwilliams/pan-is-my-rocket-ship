@@ -1,8 +1,8 @@
 export let rocket = {
     x: window.innerWidth / 2,
     y: window.innerHeight - 100,
-    width: 200,
-    height: 100,
+    width: 100,
+    height: 50,
     velocityX: 0,
     velocityY: 0,
     acceleration: 8.95,

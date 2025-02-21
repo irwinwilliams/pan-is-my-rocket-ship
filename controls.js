@@ -72,13 +72,54 @@ function handleTouchStart(event) {
             rocket.velocityX += rocket.acceleration;
         }
     }
+    event.preventDefault(); // Prevent default touch behavior like scrolling
+
 }
 
 function handleTouchEnd(event) {
     // Reset vertical velocity when touch ends
-    rocket.velocityY = 0;
-    rocket.velocityX = 0;
+    //rocket.velocityY = 0;
+    //rocket.velocityX = 0;
 }
+
+// Add a new function to continuously update velocity based on active touches
+export function updateTouchVelocity() {
+    if (isTouchingUp) {
+      rocket.velocityY -= rocket.acceleration;
+    }
+    if (isTouchingDown) {
+      rocket.velocityY += rocket.acceleration;
+    }
+    if (isTouchingLeft) {
+      rocket.velocityX -= rocket.acceleration;
+    }
+    if (isTouchingRight) {
+      rocket.velocityX += rocket.acceleration;
+    }
+  }
+  
+  // Add variables to track active touches
+  let isTouchingUp = false;
+  let isTouchingDown = false;
+  let isTouchingLeft = false;
+  let isTouchingRight = false;
+  
+  // Update the touch event handlers to set these variables
+  const upButton = document.getElementById('up-button');
+  upButton.addEventListener('touchstart', () => isTouchingUp = true);
+  upButton.addEventListener('touchend', () => isTouchingUp = false);
+  
+  const downButton = document.getElementById('down-button');
+  downButton.addEventListener('touchstart', () => isTouchingDown = true);
+  downButton.addEventListener('touchend', () => isTouchingDown = false);
+  
+  const leftButton = document.getElementById('left-button');
+  leftButton.addEventListener('touchstart', () => isTouchingLeft = true);
+  leftButton.addEventListener('touchend', () => isTouchingLeft = false);
+  
+  const rightButton = document.getElementById('right-button');
+  rightButton.addEventListener('touchstart', () => isTouchingRight = true);
+  rightButton.addEventListener('touchend', () => isTouchingRight = false);
 
 function handleMovement(rocket, keys) {
     if (keys['ArrowRight'] || keys['d']) rocket.velocityX += rocket.acceleration;
