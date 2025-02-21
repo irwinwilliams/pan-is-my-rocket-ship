@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pan Is My Rocket Ship</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: black;
+        }
+
+        #info-console {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            /* Position on the right */
+            width: 20%;
+            /* Occupy 20% of the screen width */
+            background-color: #222;
+            /* Dark background */
+            color: #0f0;
+            /* Green text color */
+            padding: 15px;
+            font-family: monospace;
+            border: 2px solid #666;
+            display: none;
+            /* Add a bit of a glow */
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+            border-radius: 5px;
+            /* Slightly rounded corners */
+            text-shadow: 0 0 5px #0f0;
+            /* Green text shadow */
+        }
+
+        #score-console,
+        #shop-button {
+            position: absolute;
+            background-color: #222;
+            /* Dark background */
+            color: #0f0;
+            /* Green text color */
+            padding: 10px 20px;
+            font-family: 'Press Start 2P', monospace;
+            /* Retro font */
+            font-size: 16px;
+            border: 2px solid #0f0;
+            /* Green border */
+            text-shadow: 0 0 5px #0f0;
+            /* Green text shadow */
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        #score-console {
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            /* Center horizontally */
+        }
+
+        #shop-button {
+            top: 10px;
+            left: 10px;
+        }
+
+        /* New styles for mobile */
+    @media (orientation: portrait) {
+      body {
+        /* Display the message to rotate the device */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-family: Arial, sans-serif;
+        color: white;
+        font-size: 24px;
+      }
+
+      canvas {
+        display: none;
+      }
+    }
+
+    /* Styles for controls */
+  .controls {
+      position: absolute;
+      z-index: 10;
+      /* Ensure controls are on top */
+      opacity: 0.7;
+      /* Make controls slightly transparent */
+    }
+
+  .left-controls {
+      left: 10px;
+      bottom: 10px;
+    }
+
+  .right-controls {
+      right: 10px;
+      bottom: 10px;
+    }
+
+  .control-button {
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      margin: 5px;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      touch-action: manipulation;
+      /* Prevent default touch behavior */
+    }
+    </style>
+</head>
+
+<body>
+    <a id="shop-button" href="https://www.redbubble.com/shop/ap/168702061" target="_blank">Support PIMRS!</a>
+    <div id="info-console"></div>
+    <div id="score-console">Score: 0</div>
+
+    <div class="controls left-controls">
+        <button class="control-button" id="shoot-button">Shoot</button>
+      </div>
+    
+      <div class="controls right-controls">
+        <button class="control-button" id="up-button">⬆️</button>
+        <button class="control-button" id="left-button">⬅️</button>
+        <button class="control-button" id="right-button">➡️</button>
+        <button class="control-button" id="down-button">⬇️</button>
+      </div>
+
+    <script src="game.js" type="module"></script>
+</body>
+
+</html>
