@@ -38,10 +38,11 @@ export function updateObstaclesAndPowerups(entities, ctx, obstacleSpeed, lives, 
                     }
                 }
             } 
-            else     
+            else{     
                 if (entity.x + entity.width < 0) {
                     entities.splice(i, 1);
                 }
+            }
 
             if (entity.type != entityTypes.NOTE)
             {
