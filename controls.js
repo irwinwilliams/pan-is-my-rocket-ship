@@ -21,20 +21,20 @@ export function setupControls(rocket) {
     const shootButton = document.getElementById('shoot-button');
     shootButton.addEventListener('touchstart', createNote); // Shoot on touch
 
-    const upButton = document.getElementById('up-button');
+    const upButton = document.getElementById('up-segment');
     upButton.addEventListener('touchstart', () => rocket.velocityY -= rocket.acceleration);
     upButton.addEventListener('touchend', () => rocket.velocityY = 0);
 
-    const downButton = document.getElementById('down-button');
+    const downButton = document.getElementById('down-segment');
     downButton.addEventListener('touchstart', () => rocket.velocityY += rocket.acceleration);
     downButton.addEventListener('touchend', () => rocket.velocityY = 0);
 
     // Add listeners for left and right buttons
-    const leftButton = document.getElementById('left-button');
+    const leftButton = document.getElementById('left-segment');
     leftButton.addEventListener('touchstart', () => rocket.velocityX -= rocket.acceleration);
     leftButton.addEventListener('touchend', () => rocket.velocityX = 0);
 
-    const rightButton = document.getElementById('right-button');
+    const rightButton = document.getElementById('right-segment');
     rightButton.addEventListener('touchstart', () => rocket.velocityX += rocket.acceleration);
     rightButton.addEventListener('touchend', () => rocket.velocityX = 0);
 
@@ -42,6 +42,7 @@ export function setupControls(rocket) {
 }
 
 function handleTouchStart(event) {
+    console.log("touch start!")
     const touchX = event.touches.clientX;
     const halfScreenWidth = window.innerWidth / 2;
 
@@ -105,19 +106,19 @@ export function updateTouchVelocity() {
   let isTouchingRight = false;
   
   // Update the touch event handlers to set these variables
-  const upButton = document.getElementById('up-button');
+  const upButton = document.getElementById('up-segment');
   upButton.addEventListener('touchstart', () => isTouchingUp = true);
   upButton.addEventListener('touchend', () => isTouchingUp = false);
   
-  const downButton = document.getElementById('down-button');
+  const downButton = document.getElementById('down-segment');
   downButton.addEventListener('touchstart', () => isTouchingDown = true);
   downButton.addEventListener('touchend', () => isTouchingDown = false);
   
-  const leftButton = document.getElementById('left-button');
+  const leftButton = document.getElementById('left-segment');
   leftButton.addEventListener('touchstart', () => isTouchingLeft = true);
   leftButton.addEventListener('touchend', () => isTouchingLeft = false);
   
-  const rightButton = document.getElementById('right-button');
+  const rightButton = document.getElementById('right-segment');
   rightButton.addEventListener('touchstart', () => isTouchingRight = true);
   rightButton.addEventListener('touchend', () => isTouchingRight = false);
 

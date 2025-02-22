@@ -16,40 +16,28 @@
             position: absolute;
             top: 10px;
             right: 10px;
-            /* Position on the right */
             width: 20%;
-            /* Occupy 20% of the screen width */
             background-color: #222;
-            /* Dark background */
             color: #0f0;
-            /* Green text color */
             padding: 15px;
             font-family: monospace;
             border: 2px solid #666;
             display: none;
-            /* Add a bit of a glow */
             box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
             border-radius: 5px;
-            /* Slightly rounded corners */
             text-shadow: 0 0 5px #0f0;
-            /* Green text shadow */
         }
 
         #score-console,
         #shop-button {
             position: absolute;
             background-color: #222;
-            /* Dark background */
             color: #0f0;
-            /* Green text color */
             padding: 10px 20px;
             font-family: 'Press Start 2P', monospace;
-            /* Retro font */
             font-size: 16px;
             border: 2px solid #0f0;
-            /* Green border */
             text-shadow: 0 0 5px #0f0;
-            /* Green text shadow */
             text-decoration: none;
             cursor: pointer;
         }
@@ -58,7 +46,6 @@
             top: 10px;
             left: 50%;
             transform: translateX(-50%);
-            /* Center horizontally */
         }
 
         #shop-button {
@@ -68,7 +55,6 @@
 
         @media (orientation: portrait) and (max-width: 768px) {
             body {
-                /* Display the message to rotate the device */
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -83,28 +69,24 @@
             }
 
             #rotate-message {
-                display: flex; /* Use flexbox for the message container */
-                flex-direction: column; /* Align items vertically */
-                align-items: center; /* Center the image and text horizontally */
+                display: flex;
+                flex-direction: column;
+                align-items: center;
                 height: 100%;
-                padding-top:50%;
+                padding-top: 50%;
             }
         }
 
         @media (orientation: landscape) or (min-width: 768px) {
             #rotate-message {
                 display: none;
-                /* Hide the rotate message */
             }
         }
 
-        /* Styles for controls */
         .controls {
             position: absolute;
             z-index: 10;
-            /* Ensure controls are on top */
             opacity: 0.7;
-            /* Make controls slightly transparent */
         }
 
         .left-controls {
@@ -127,21 +109,98 @@
             font-size: 16px;
             cursor: pointer;
             touch-action: manipulation;
-            /* Prevent default touch behavior */
         }
 
         .right-controls {
-            /*... other styles... */
-            /* Increase the size of the button container */
             padding: 20px;
         }
 
         .control-button {
-            /*... other styles... */
-            /* Increase the size of the buttons themselves */
             padding: 20px 30px;
             font-size: 24px;
         }
+
+        #control-circle {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            /* Position on the right */
+            width: 150px;
+            /* Adjust size as needed */
+            height: 150px;
+            /* Adjust size as needed */
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.5);
+            touch-action: manipulation;
+        }
+
+        .circle-segment {
+            width: 50%;
+            height: 50%;
+            position: absolute;
+            cursor: pointer;
+            background-color: rgba(255, 255, 255, 0.2);
+            transition: background-color 0.1s ease;
+            /* Add transition */
+        }
+
+        .circle-segment.active {
+            background-color: rgba(255, 255, 255, 0.5);
+            /* Highlight color */
+        }
+
+        #up-segment {
+            top: 0;
+            left: 25%;
+            clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+        }
+
+        #down-segment {
+            bottom: 0;
+            left: 25%;
+            clip-path: polygon(50% 100%, 100% 0%, 0% 0%);
+        }
+
+        #left-segment {
+            top: 25%;
+            left: 0;
+            clip-path: polygon(0% 50%, 100% 0%, 100% 100%);
+        }
+
+        #right-segment {
+            top: 25%;
+            right: 0;
+            clip-path: polygon(100% 50%, 0% 0%, 0% 100%);
+        }
+
+        /* For smaller screens */
+        @media (max-width: 600px) {
+            #control-circle {
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+        /* For larger screens */
+        @media (min-width: 1200px) {
+            #control-circle {
+                width: 250px;
+                height: 250px;
+            }
+        }
+        #pause-button {
+    position: absolute;
+    top: 10px;
+    right: 25%; 
+    background-color: #222; /* Dark background */
+    color: #0f0;           /* Green text color */
+    padding: 10px 20px;   
+    font-family: 'Press Start 2P', monospace; /* Retro font */
+    font-size: 16px;
+    border: 2px solid #0f0; /* Green border */
+    text-shadow: 0 0 5px #0f0; /* Green text shadow */
+    cursor: pointer;
+}
     </style>
 </head>
 
@@ -149,16 +208,18 @@
     <a id="shop-button" href="https://www.redbubble.com/shop/ap/168702061" target="_blank">Support PIMRS!</a>
     <div id="info-console"></div>
     <div id="score-console">Score: 0</div>
+    <div id="pause-button">Pause</div>
+
 
     <div class="controls left-controls">
-        <button class="control-button" id="shoot-button">Shoot</button>
+        <button class="control-button" id="shoot-button">Fire</button>
     </div>
 
-    <div class="controls right-controls">
-        <button class="control-button" id="up-button">⬆️</button>
-        <button class="control-button" id="left-button">⬅️</button>
-        <button class="control-button" id="right-button">➡️</button>
-        <button class="control-button" id="down-button">⬇️</button>
+    <div id="control-circle">
+        <div class="circle-segment" id="up-segment">.</div>
+        <div class="circle-segment" id="down-segment">.</div>
+        <div class="circle-segment" id="left-segment">.</div>
+        <div class="circle-segment" id="right-segment">.</div>
     </div>
 
     <div id="rotate-message">
@@ -166,6 +227,14 @@
     </div>
 
     <script src="game.js" type="module"></script>
+
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "qe0bixo0rt");
+    </script>
 </body>
 
 </html>

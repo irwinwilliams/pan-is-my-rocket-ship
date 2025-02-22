@@ -5,7 +5,7 @@ export let rocket = {
     height: 50,
     velocityX: 0,
     velocityY: 0,
-    acceleration: 8.95,
+    acceleration: 0.95,
     friction: 0.98,
     image: new Image()
 };

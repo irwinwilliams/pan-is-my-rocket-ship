@@ -34,10 +34,22 @@ function draw() {
     drawRocket(ctx);
 }
 
+let isGamePaused = false; 
+let animationId; // To store the animation frame ID
+
+// Event listener for the pause button
+document.getElementById('pause-button').addEventListener('click', function() {
+    isGamePaused =!isGamePaused; 
+    this.textContent = isGamePaused? 'Resume': 'Pause'; // Change button text
+});
+
+
 function gameLoop() {
-    update();
-    updateTouchVelocity(); // *** Add this line ***
-    draw();
+    if (!isGamePaused) {
+        update();
+        updateTouchVelocity(); // *** Add this line ***
+        draw();
+    }
     requestAnimationFrame(gameLoop);
 }
 
@@ -45,3 +57,41 @@ window.addEventListener('resize', () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 });
+
+// Example of how to add active state to the segment.
+document.getElementById('up-segment').addEventListener('touchstart', function() {
+    this.classList.add('active');
+    setTimeout(() => this.classList.remove('active'), 100);
+  });
+  
+  document.getElementById('down-segment').addEventListener('touchstart', function() {
+    this.classList.add('active');
+    setTimeout(() => this.classList.remove('active'), 100);
+  });
+  
+  document.getElementById('left-segment').addEventListener('touchstart', function() {
+    this.classList.add('active');
+    setTimeout(() => this.classList.remove('active'), 100);
+  });
+  
+  document.getElementById('right-segment').addEventListener('touchstart', function() {
+    this.classList.add('active');
+    setTimeout(() => this.classList.remove('active'), 100);
+  });
+  
+  //repeat for mouse down events if needed.
+  document.getElementById('up-segment').addEventListener('mousedown', function() {
+    this.classList.add('active');
+    setTimeout(() => this.classList.remove('active'), 100);
+  });
+  
+  document.getElementById('down-segment').addEventListener('mousedown', function() {
+    this.classList.add('active');
+    setTimeout(() => this.classList.remove('active'), 100);
+  });
+  
+  document.getElementById('left-segment').addEventListener('mousedown', function() {
+    this.classList.add('active');
+    setTimeout(() => this.classList.remove('active'), 100);
+  }
+  );
