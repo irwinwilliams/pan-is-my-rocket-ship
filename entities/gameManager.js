@@ -40,6 +40,7 @@ export function showGameOverBanner() {
 export function resetGame() {
     gameVariables.setLives(5);
     gameVariables.setGameOver(false);
+    gameVariables.setScore(0);
 
     rocket.x = window.innerWidth / 2;
     rocket.y = window.innerHeight - 100;
@@ -73,12 +74,22 @@ startbutton.addEventListener('click', () => {
 document.body.appendChild(startbutton);
 
 export function showStartGameButton() {
+    const instructionsBox = document.getElementById('instructions-box');
+    instructionsBox.style.display = 'block'; // Show instructions
+    //startbutton.style.display = 'block';
 
+    const closeButton = document.getElementById('close-instructions');
+    closeButton.addEventListener('click', () => {
+        instructionsBox.style.display = 'none'; // Hide instructions
+        startbutton.style.display = 'none';
+        //document.body.removeChild(startbutton); // Remove start button
+        startGame(); // Start the game
+    });
 }
 
 export function startGame() {
     gameVariables.setGameStarted(true);
     if (startbutton) {
-        document.body.removeChild(startbutton);
+        //document.body.removeChild(startbutton);
     }
 }

@@ -201,10 +201,45 @@
     text-shadow: 0 0 5px #0f0; /* Green text shadow */
     cursor: pointer;
 }
+#instructions-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #222;
+    color: #0f0;
+    padding: 20px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 16px;
+    border: 2px solid #0f0;
+    text-shadow: 0 0 5px #0f0;
+    z-index: 100; /* Ensure it's on top */
+    display: none; /* Initially hidden */
+    max-height: 80vh; /* Limit height to 80% of viewport height */
+    overflow-y: auto; /* Add vertical scroll if content overflows */
+}
+
+#close-instructions {
+    background-color: #0f0;
+    color: #222;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+}
     </style>
 </head>
 
 <body>
+    <div id="instructions-box">
+        <h2>How to Play</h2>
+        <p>Use the arrow keys or the circle on the right to move the rocket.</p>
+        <p>Press the spacebar or tap the screen to shoot notes.</p>
+        <p>Hit the obstacles with the notes to score points.</p>
+        <p>Collect power-ups to boost your score and gain lives.</p>
+        <p>Avoid the obstacles to stay alive!</p>
+        <button id="close-instructions">Start Game</button>
+    </div>
     <a id="shop-button" href="https://www.redbubble.com/shop/ap/168702061" target="_blank">Support PIMRS!</a>
     <div id="info-console"></div>
     <div id="score-console">Score: 0</div>
