@@ -26,8 +26,8 @@ export function createPowerup() {
     const types = [entityTypes.POWERUP_LIFE, 
         entityTypes.POWERUP_SPEED, 
         entityTypes.POWERUP_LYRIC];
-    //const type = types[Math.floor(Math.random() * types.length)];
-    const type= entityTypes.POWERUP_LYRIC;
+    const type = types[Math.floor(Math.random() * types.length)];
+    //const type= entityTypes.POWERUP_LYRIC;
     const size = 40;
     const y = Math.random() * (window.innerHeight - size);
 

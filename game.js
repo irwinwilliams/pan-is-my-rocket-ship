@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 function update() {
     updateRocket();
-    updateEntities(ctx);
+    updateEntities(ctx, isSoundOn);
 }
 const scoreConsole = document.getElementById('score-console');
 
@@ -36,6 +36,8 @@ function draw() {
 
 let isGamePaused = false; 
 let animationId; // To store the animation frame ID
+let isSoundOn = true; // Add sound toggle variable
+
 
 // Event listener for the pause button
 document.getElementById('pause-button').addEventListener('click', function() {
@@ -43,6 +45,12 @@ document.getElementById('pause-button').addEventListener('click', function() {
     this.textContent = isGamePaused? 'Resume': 'Pause'; // Change button text
 });
 
+// Event listener for the sound toggle button
+const soundToggleButton = document.getElementById('sound-toggle');
+soundToggleButton.addEventListener('click', function () {
+  isSoundOn = !isSoundOn;
+  this.textContent = isSoundOn ? 'Sound: On' : 'Sound: Off';
+});
 
 function gameLoop() {
     if (!isGamePaused) {

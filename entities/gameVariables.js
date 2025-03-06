@@ -3,6 +3,9 @@ export let lives = 5;
 export let gameOver = false;
 export let gameStarted = false;
 export let score = 0;
+export const powerUpSound = new Audio('../sounds/mixkit-player-jumping-in-a-video-game-2043.wav'); // Replace with your sound file
+
+window.powerUp = powerUpSound;
 
 export function setScore(value) {
     score = value;
@@ -35,7 +38,8 @@ export const powerupSettings = {
 };
 
 export const musicLyricSound = new Audio('game-bonus-144751.mp3');
-export const obstacleHitSound = new Audio('video-game-bio-gun-sfx-203965.mp3');
+export const obstacleHitSound = new Audio('../sounds/mixkit-wrong-answer-fail-notification-946.wav');
+export const noteHitSound = new Audio('../sounds/mixkit-game-quick-warning-notification-268.wav');
 export const obstacleMinSize = 30;
 export const obstacleMaxSize = 80;
 

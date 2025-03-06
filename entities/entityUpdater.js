@@ -2,10 +2,10 @@ import { entityTypes } from './entityTypes.js';
 import { rocket } from '../rocket.js';
 import { showGameOverBanner } from './gameManager.js';
 import { checkCollision, checkCollisionWith } from './collisionDetector.js';
-import { songLines, lives, musicLyricSound, setLives, gameOver, setGameOver, setScore, score } from './gameVariables.js';
+import { songLines, lives, musicLyricSound, setLives, gameOver, setGameOver, setScore, score, powerUpSound, noteHitSound } from './gameVariables.js';
 
 
-export function updateObstaclesAndPowerups(entities, ctx, obstacleSpeed, lives, gameOver, obstacleHitSound, songLines, musicLyricSound) {
+export function updateObstaclesAndPowerups(entities, ctx, obstacleSpeed, lives, gameOver, obstacleHitSound, songLines, musicLyricSound, isSoundOn) {
     for (let i = entities.length - 1; i >= 0; i--) {
         const entity = entities[i];
 
@@ -31,6 +31,10 @@ export function updateObstaclesAndPowerups(entities, ctx, obstacleSpeed, lives, 
                             entities.splice(j, 1); // Remove obstacle
                             entities.splice(i, 1); // Remove note
                             setScore(score + 10); // Increase score
+                            if (isSoundOn)
+                            {
+                                noteHitSound.play();
+                            }
                             console.log("Score: " + score);
                             // Play a nice sound effect
                             break; 
@@ -50,7 +54,10 @@ export function updateObstaclesAndPowerups(entities, ctx, obstacleSpeed, lives, 
 
                 if (checkCollision(entity)) {
                     if (entity.type === entityTypes.OBSTACLE) {
-                        //obstacleHitSound.play();
+                        if (isSoundOn)
+                        {
+                            obstacleHitSound.play();
+                        }
                         setLives(lives-1);
                         console.log("Lives: " + lives);
     
@@ -71,7 +78,7 @@ export function updateObstaclesAndPowerups(entities, ctx, obstacleSpeed, lives, 
                         ctx.fillText(randomLine, entity.x, entity.y - 20);
     
                     } else if (entity.type.startsWith('powerup_')) {
-                        handlePowerup(entity, ctx);
+                        handlePowerup(entity, ctx, isSoundOn);
                     }
     
                     entities.splice(i, 1);
@@ -83,7 +90,11 @@ export function updateObstaclesAndPowerups(entities, ctx, obstacleSpeed, lives, 
     }
 }
 
-function handlePowerup(powerup, ctx) {
+function handlePowerup(powerup, ctx, isSoundOn) {
+    if (isSoundOn) {
+        powerUpSound.play(); // Play power-up sound
+      }
+
     switch (powerup.type) {
         case entityTypes.POWERUP_LIFE:
             setLives(lives+1);

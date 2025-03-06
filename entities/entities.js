@@ -66,7 +66,7 @@ const powerupInterval = 5000;
 
 
 
-export function updateEntities(ctx) {
+export function updateEntities(ctx, isSoundOn) {
     if (gameOver) return;
 
     if (!gameStarted) { // Check if the game has started
@@ -85,7 +85,7 @@ export function updateEntities(ctx) {
         lastPowerupTime = now;
     }
 
-    updateObstaclesAndPowerups(entities, ctx, obstacleSpeed, lives, gameOver, obstacleHitSound, songLines, musicLyricSound);
+    updateObstaclesAndPowerups(entities, ctx, obstacleSpeed, lives, gameOver, obstacleHitSound, songLines, musicLyricSound, isSoundOn);
 }
 
 export {

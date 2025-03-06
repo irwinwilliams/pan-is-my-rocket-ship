@@ -188,8 +188,8 @@
                 height: 250px;
             }
         }
-        #pause-button {
-    position: absolute;
+        #pause-button, #sound-toggle {
+            position: absolute;
     top: 10px;
     right: 25%; 
     background-color: #222; /* Dark background */
@@ -201,6 +201,9 @@
     text-shadow: 0 0 5px #0f0; /* Green text shadow */
     cursor: pointer;
 }
+#sound-toggle {
+      right: 35%; /* Adjust position as needed */
+    }
 #instructions-box {
     position: absolute;
     top: 50%;
@@ -244,6 +247,8 @@
     <div id="info-console"></div>
     <div id="score-console">Score: 0</div>
     <div id="pause-button">Pause</div>
+    <div id="sound-toggle">Sound: On</div>
+
 
 
     <div class="controls left-controls">
