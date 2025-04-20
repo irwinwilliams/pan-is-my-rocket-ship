@@ -1,6 +1,6 @@
 import { entityTypes } from './entityTypes.js';
 import { rocket } from '../rocket.js'; // Update the path
-import { createObstacle, createPowerup } from './entityFactory.js';
+import { createObstacle, createPowerup, createPlanet } from './entityFactory.js';
 import { updateObstaclesAndPowerups } from './entityUpdater.js';
 import { drawEntities, drawLives } from './entityRenderer.js';
 import { checkCollision } from './collisionDetector.js';
@@ -24,36 +24,6 @@ for (let i = 0; i < 50; i++) {
     });
 }
 
-entities.push({
-    x: 1500,
-    y: 200,
-    width: 100,
-    height: 100,
-    image: new Image(),
-    type: entityTypes.PLANET
-});
-entities[entities.length - 1].image.src = 'planet1.png';
-
-entities.push({
-    x: 2000,
-    y: 400,
-    width: 80,
-    height: 80,
-    image: new Image(),
-    type: entityTypes.PLANET
-});
-entities[entities.length - 1].image.src = 'planet2.png';
-
-entities.push({
-    x: 2500,
-    y: 350,
-    width: 120,
-    height: 120,
-    image: new Image(),
-    type: entityTypes.PLANET
-});
-entities[entities.length - 1].image.src = 'planet3.png';
-
 
 
 const obstacleSpeed = 5;
@@ -63,6 +33,9 @@ const obstacleInterval = 1000;
 const powerupSpeed = 3;
 let lastPowerupTime = 0;
 const powerupInterval = 5000;
+
+let lastPlanetTime = 0;
+const planetInterval = 3000; // Create a planet every 3 seconds (adjust as needed)
 
 
 
@@ -83,6 +56,11 @@ export function updateEntities(ctx, isSoundOn) {
     if (now - lastPowerupTime > powerupInterval) {
         entities.push(createPowerup());
         lastPowerupTime = now;
+    }
+
+    if (now - lastPlanetTime > planetInterval) {
+        entities.push(createPlanet());
+        lastPlanetTime = now;
     }
 
     updateObstaclesAndPowerups(entities, ctx, obstacleSpeed, lives, gameOver, obstacleHitSound, songLines, musicLyricSound, isSoundOn);

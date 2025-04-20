@@ -59,3 +59,21 @@ export function createPowerup() {
 
     return powerup;
 }
+
+export function createPlanet() {
+    const planetImages = ['planet1.png', 'planet2.png', 'planet3.png']; // Array of planet image paths
+    const imageIndex = Math.floor(Math.random() * planetImages.length); // Select a random image
+    const size = Math.random() * 80 + 40; // Random size between 40 and 120
+    const y = Math.random() * (window.innerHeight - size); // Random y-position
+
+    const planet = {
+        x: window.innerWidth, // Start off-screen to the right
+        y: y,
+        width: size,
+        height: size,
+        type: entityTypes.PLANET,
+        image: new Image()
+    };
+    planet.image.src = planetImages[imageIndex]; // Set the image source
+    return planet;
+}

@@ -71,7 +71,14 @@ export function updateObstaclesAndPowerups(entities, ctx, obstacleSpeed, lives, 
                             showGameOverBanner();
                         }
     
-                    } else if (entity.type === entityTypes.REWARD) {
+                    } else if (entity.type === entityTypes.PLANET) {
+                        const overlay = document.getElementById('overlay');
+                        overlay.style.backgroundColor = 'rgba(255, 0, 0, 0.5)'; // Change to red
+                        setTimeout(() => {
+                            overlay.style.backgroundColor = 'transparent'; // Reset to transparent
+                        }, 500);
+                    }
+                        else if (entity.type === entityTypes.REWARD) {
                         const randomLine = songLines[Math.floor(Math.random() * songLines.length)];
                         ctx.font = '16px Arial';
                         ctx.fillStyle = 'white';
@@ -95,7 +102,17 @@ function handlePowerup(powerup, ctx, isSoundOn) {
         powerUpSound.play(); // Play power-up sound
       }
 
+    const overlay = document.getElementById('overlay');
+
+
     switch (powerup.type) {
+        case entityTypes.PLANET:
+            overlay.style.backgroundColor = 'rgba(255, 0, 0, 0.5)'; // Change to red with 50% opacity
+            setTimeout(() => {
+                overlay.style.backgroundColor = 'transparent'; // Reset to transparent after a delay
+            }, 500); // Adjust the duration (in milliseconds) as needed
+            break;
+
         case entityTypes.POWERUP_LIFE:
             setLives(lives+1);
             break;
